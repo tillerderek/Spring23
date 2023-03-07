@@ -1,0 +1,13 @@
+<ImportMXDLog>	<Messages>
+		<FileName>C:\Users\tille\OneDrive\Desktop\Spring23\GIS-111 GIS\week7\ProStart\ProStart\NorthridgeData\MapsAndLayers\Northridge1994.mxd</FileName>
+		<Message>
+			<Name></Name>
+			<MessageType>Warning</MessageType>
+			<Severity>High</Severity>
+			<Description>Basemap Layers cannot be published directly to a service</Description>
+			<Code>00037</Code>
+			<ComponentName>Basemap</ComponentName>
+			<ComponentType>Layer</ComponentType>
+</Message>
+</Messages>
+</ImportMXDLog>
