@@ -318,40 +318,132 @@
 # plt.show()
 
 #16-5
-import csv
-from datetime import datetime
+# import csv
+# from datetime import datetime
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-filename = 'project1/data/avl_precip.csv'
+# filename = 'project1/data/avl_precip.csv'
+# with open(filename) as f:
+#     reader = csv.reader(f)
+#     header_row = next(reader)
+
+#     # Get dates and high temps from this file.
+#     dates, prcp_amounts = [], []
+#     for row in reader:
+#         current_date = datetime.strptime(row[2], '%Y-%m-%d')
+#         try:
+#           #had to convert to float
+#           prcp = float(row[3])
+#         except ValueError:
+#           print(f"Missing data for {current_date}")
+#         else:
+#           dates.append(current_date)
+#           prcp_amounts.append(prcp)
+
+# # Plot the high temperatures.
+# plt.style.use('seaborn')
+# fig, ax = plt.subplots()
+# ax.bar(dates, prcp_amounts, color='blue')
+
+# # Format plot.
+# plt.title(f"Daily precipitation amounts - 2022\nAsheville, NC", fontsize=24)
+# plt.xlabel('', fontsize=16)
+# fig.autofmt_xdate()
+# plt.ylabel("Precipitation in Inches", fontsize=16)
+# plt.tick_params(axis='both', which='major', labelsize=16)
+
+# plt.show()
+
+#16-6
+# import json
+
+# from plotly.graph_objs import Scattergeo, Layout
+# from plotly import offline
+
+# # explore the structure of the data.
+# filename = 'project1/data/eq_data_30_day_m1.json'
+# with open(filename) as f:
+#     all_eq_data = json.load(f)
+
+# all_eq_dicts = all_eq_data['features']
+
+# mags, lons, lats, hover_texts = [], [], [], []
+# for eq_dict in all_eq_dicts:
+#     mags.append(eq_dict['properties']['mag'])
+#     lons.append(eq_dict['geometry']['coordinates'][0])
+#     lats.append(eq_dict['geometry']['coordinates'][1])
+#     hover_texts.append(eq_dict['properties']['title'])
+
+# # map the earthquakes.
+# data = [{
+#     'type': 'scattergeo',
+#     'lon': lons,
+#     'lat': lats,
+#     'text': hover_texts,
+#     'marker': {
+#         'size': [5*mag for mag in mags],
+#         'color': mags,
+#         'colorscale': 'Viridis',
+#         'reversescale': True,
+#         'colorbar': {'title': 'Magnitude'},
+#     },
+# }]
+
+# my_layout = Layout(title='Global Earthquakes')
+
+# fig = {'data': data, 'layout': my_layout}
+# offline.plot(fig, filename='global_earthquakes.html')
+
+#16-7
+# import json
+
+# from plotly.graph_objs import Scattergeo, Layout
+# from plotly import offline
+
+# # explore the structure of the data.
+# filename = 'project1/data/eq_data_30_day_m1.json'
+# with open(filename) as f:
+#     all_eq_data = json.load(f)
+
+# title = all_eq_data['metadata']['title']
+# all_eq_dicts = all_eq_data['features']
+
+# mags, lons, lats, hover_texts = [], [], [], []
+# for eq_dict in all_eq_dicts:
+#     mags.append(eq_dict['properties']['mag'])
+#     lons.append(eq_dict['geometry']['coordinates'][0])
+#     lats.append(eq_dict['geometry']['coordinates'][1])
+#     hover_texts.append(eq_dict['properties']['title'])
+
+# # map the earthquakes.
+# data = [{
+#     'type': 'scattergeo',
+#     'lon': lons,
+#     'lat': lats,
+#     'text': hover_texts,
+#     'marker': {
+#         'size': [5*mag for mag in mags],
+#         'color': mags,
+#         'colorscale': 'Viridis',
+#         'reversescale': True,
+#         'colorbar': {'title': 'Magnitude'},
+#     },
+# }]
+
+# my_layout = Layout(title=title)
+
+# fig = {'data': data, 'layout': my_layout}
+# offline.plot(fig, filename='global_earthquakes.html')
+
+#16-8
+import json
+
+# Explore the structure of the data.
+filename = 'project1/data/3_18.json'
 with open(filename) as f:
-    reader = csv.reader(f)
-    header_row = next(reader)
+    all_eq_data = json.load(f)
 
-    # Get dates and high temps from this file.
-    dates, prcp_amounts = [], []
-    for row in reader:
-        current_date = datetime.strptime(row[2], '%Y-%m-%d')
-        try:
-          #had to convert to float
-          prcp = float(row[3])
-        except ValueError:
-          print(f"Missing data for {current_date}")
-        else:
-          dates.append(current_date)
-          prcp_amounts.append(prcp)
-
-# Plot the high temperatures.
-plt.style.use('seaborn')
-fig, ax = plt.subplots()
-ax.bar(dates, prcp_amounts, color='blue')
-
-# Format plot.
-plt.title(f"Daily precipitation amounts - 2022\nAsheville, NC", fontsize=24)
-plt.xlabel('', fontsize=16)
-fig.autofmt_xdate()
-plt.ylabel("Precipitation in Inches", fontsize=16)
-plt.tick_params(axis='both', which='major', labelsize=16)
-
-plt.show()
-
+readable_file = 'project1/data/readable_eq_data.json'
+with open(readable_file, 'w') as f:
+    json.dump(all_eq_data, f, indent=4)
