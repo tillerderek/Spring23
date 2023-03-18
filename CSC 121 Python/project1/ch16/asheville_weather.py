@@ -13,17 +13,18 @@ with open(filename) as f:
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
         try:
-            prcp = int(row[3])
+          #had to convert to float
+          prcp = float(row[3])
         except ValueError:
-            print(f"Missing data for {current_date}")
+          print(f"Missing data for {current_date}")
         else:
-            dates.append(current_date)
-            prcp_amounts.append(prcp)
+          dates.append(current_date)
+          prcp_amounts.append(prcp)
 
 # Plot the high temperatures.
 plt.style.use('seaborn')
 fig, ax = plt.subplots()
-ax.plot(dates, prcp_amounts, c='red')
+ax.plot(dates, prcp_amounts, c='blue')
 
 # Format plot.
 plt.title(f"Daily precipitation amounts - 2022\nAsheville, NC", fontsize=24)
