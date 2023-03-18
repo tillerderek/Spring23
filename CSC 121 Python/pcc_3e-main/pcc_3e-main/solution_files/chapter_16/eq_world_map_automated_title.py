@@ -5,7 +5,7 @@ import plotly.express as px
 
 
 # Read data as a string and convert to a Python object.
-path = Path('eq_data/eq_data_30_day_m1.geojson')
+path = Path('/solution_files/chapter_16/eq_data/eq_data_30_day_m1.geojson')
 contents = path.read_text()
 all_eq_data = json.loads(contents)
 

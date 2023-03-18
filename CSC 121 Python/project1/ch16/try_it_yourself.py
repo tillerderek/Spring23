@@ -1,4 +1,4 @@
-#16-1
+# 16-1
 # import csv
 # from datetime import datetime
 
@@ -36,9 +36,9 @@
 
 # plt.show()
 
-#16-2
+# 16-2
 
-#sitka
+# sitka
 # import csv
 # from datetime import datetime
 
@@ -76,7 +76,7 @@
 
 # plt.show()
 
-#death valley
+# death valley
 # import csv
 # from datetime import datetime
 
@@ -119,7 +119,7 @@
 
 # plt.show()
 
-#16-3
+# 16-3
 # import csv
 # from datetime import datetime
 
@@ -162,7 +162,7 @@
 
 # plt.show()
 
-#16-4
+# 16-4
 # import csv
 # from datetime import datetime
 
@@ -186,7 +186,7 @@
 #         if not station_name:
 #             station_name = row[name_index]
 #             print(station_name)
-            
+
 #         current_date = datetime.strptime(row[date_index], '%Y-%m-%d')
 #         try:
 #             high = int(row[high_index])
@@ -243,7 +243,7 @@
 #         if not station_name:
 #             station_name = row[name_index]
 #             print(station_name)
-            
+
 #         current_date = datetime.strptime(row[date_index], '%Y-%m-%d')
 #         try:
 #             high = int(row[high_index])
@@ -288,7 +288,7 @@
 #         if not station_name:
 #             station_name = row[name_index]
 #             print(station_name)
-            
+
 #         current_date = datetime.strptime(row[date_index], '%Y-%m-%d')
 #         try:
 #             high = int(row[high_index])
@@ -317,7 +317,7 @@
 
 # plt.show()
 
-#16-5
+# 16-5
 # import csv
 # from datetime import datetime
 
@@ -355,7 +355,7 @@
 
 # plt.show()
 
-#16-6
+# 16-6
 # import json
 
 # from plotly.graph_objs import Scattergeo, Layout
@@ -395,7 +395,7 @@
 # fig = {'data': data, 'layout': my_layout}
 # offline.plot(fig, filename='global_earthquakes.html')
 
-#16-7
+# 16-7
 # import json
 
 # from plotly.graph_objs import Scattergeo, Layout
@@ -436,14 +436,100 @@
 # fig = {'data': data, 'layout': my_layout}
 # offline.plot(fig, filename='global_earthquakes.html')
 
-#16-8
-import json
+# 16-8
+# import json
 
-# Explore the structure of the data.
-filename = 'project1/data/3_18.json'
-with open(filename) as f:
-    all_eq_data = json.load(f)
+# # Explore the structure of the data.
+# filename = 'project1/data/eq_last_day.geojson'
+# #had to add encoding to parse geojson data for some reason
+# with open(filename, encoding='utf-8') as f:
+#     data = json.load(f)
 
-readable_file = 'project1/data/readable_eq_data.json'
-with open(readable_file, 'w') as f:
-    json.dump(all_eq_data, f, indent=4)
+# readable_file = 'project1/data/test.geojson'
+# with open(readable_file, 'w') as f:
+#     json.dump(data, f, indent=4)
+
+# import json
+
+# from plotly.graph_objs import Scattergeo, Layout
+# from plotly import offline
+
+# # Explore the structure of the data.
+# filename = 'project1/data/eq_last_day.geojson'
+# #add encoding
+# with open(filename, encoding='utf-8') as f:
+#     all_eq_data = json.load(f)
+
+# all_eq_dicts = all_eq_data['features']
+
+# mags, lons, lats, hover_texts = [], [], [], []
+# for eq_dict in all_eq_dicts:
+#     mag = eq_dict['properties']['mag']
+#     lon = eq_dict['geometry']['coordinates'][0]
+#     lat = eq_dict['geometry']['coordinates'][1]
+#     title = eq_dict['properties']['title']
+#     mags.append(mag)
+#     lons.append(lon)
+#     lats.append(lat)
+#     hover_texts.append(title)
+
+# # Map the earthquakes.
+# data = [{
+#     'type': 'scattergeo',
+#     'lon': lons,
+#     'lat': lats,
+#     'text': hover_texts,
+# }]
+
+# my_layout = Layout(title='Global Earthquakes')
+
+# fig = {'data': data, 'layout': my_layout}
+# offline.plot(fig, filename='global_earthquakes.html')
+
+# 16-9
+# import csv
+# from datetime import datetime
+
+# from plotly.graph_objs import Scattergeo, Layout
+
+# from plotly import offline
+
+
+# # processing csv
+# filename = 'project1/data/world_fires_1_day.csv'
+# with open(filename) as f:
+#     reader = csv.reader(f)
+#     header_row = next(reader)
+
+#     dates, brightnesses = [], []
+#     lats, lons = [], []
+#     hover_texts = []
+
+#     for row in reader:
+#         date = datetime.strptime(row[5], '%Y-%m-%d')
+#         brightness = float(row[2])
+
+#         dates.append(date)
+#         brightnesses.append(brightness)
+#         lats.append(row[0])
+#         lons.append(row[1])
+
+# # fire map
+# data = [{
+#     'type': 'scattergeo',
+#     'lon': lons,
+#     'lat': lats,
+#     'text': hover_texts,
+#     'marker': {
+#         'size': [brightness/30 for brightness in brightnesses],
+#         'color': brightnesses,
+#         'colorscale': 'Reds',
+#         'reversescale': True,
+#         'colorbar': {'title': 'Brightness'},
+#     },
+# }]
+
+# my_layout = Layout(title='Global Fire Activity')
+
+# fig = {'data': data, 'layout': my_layout}
+# offline.plot(fig, filename='global_fires.html')
