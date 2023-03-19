@@ -246,21 +246,21 @@ MariaDB [ap]> SELECT vendor_name, COUNT(invoice_number) AS 'number invoices', SU
 --	Cut and paste your SQL statement and results set below.
 
 MariaDB [ap]> SELECT account_description, COUNT(account_number) AS 'count_of_items', SUM(line_item_amount) AS 'line_item_sum' FROM general_ledger_accounts NATURAL JOIN invoice_line_items GROUP BY account_description HAVING COUNT(account_number)>1 ORDER BY SUM(line_item_amount) desc;
-+--------------------------------+----------------+---------------+
-| account_description            | count_of_items | line_item_sum |
-+--------------------------------+----------------+---------------+
-| Book Printing Costs            |              8 |     148759.97 |
-| Freight                        |             60 |      27599.65 |
-| Outside Services               |              3 |      13394.10 |
-| Book Production Costs          |              8 |       6175.12 |
-| Books, Dues, and Subscriptions |              6 |       5207.32 |
-| Direct Mail Advertising        |              6 |       3900.77 |
-| Computer Equipment             |              3 |       2137.05 |
-| Group Insurance                |              3 |        564.00 |
-| Telephone                      |              7 |        266.01 |
-| Office Supplies                |              3 |        175.80 |
-+--------------------------------+----------------+---------------+
-10 rows in set (0.002 sec)
+-- +--------------------------------+----------------+---------------+
+-- | account_description            | count_of_items | line_item_sum |
+-- +--------------------------------+----------------+---------------+
+-- | Book Printing Costs            |              8 |     148759.97 |
+-- | Freight                        |             60 |      27599.65 |
+-- | Outside Services               |              3 |      13394.10 |
+-- | Book Production Costs          |              8 |       6175.12 |
+-- | Books, Dues, and Subscriptions |              6 |       5207.32 |
+-- | Direct Mail Advertising        |              6 |       3900.77 |
+-- | Computer Equipment             |              3 |       2137.05 |
+-- | Group Insurance                |              3 |        564.00 |
+-- | Telephone                      |              7 |        266.01 |
+-- | Office Supplies                |              3 |        175.80 |
+-- +--------------------------------+----------------+---------------+
+-- 10 rows in set (0.002 sec)
 
 
 
@@ -271,6 +271,31 @@ MariaDB [ap]> SELECT account_description, COUNT(account_number) AS 'count_of_ite
 --		Hint:	Join the invoices table so that you can code a search condition based 
 --				on the invoice_date.
 --	Cut and paste your SQL statement and results set below.
+MariaDB [ap]> SELECT account_description, COUNT(account_number) AS 'count_of_items', SUM(line_item_amount) AS 'line_item_sum'
+    -> FROM general_ledger_accounts
+    -> NATURAL JOIN invoice_line_items
+    -> NATURAL JOIN invoices
+    -> WHERE invoice_date >= '2018-04-01' AND invoice_date <= '2018-06-30'
+    -> GROUP BY account_description
+    -> HAVING COUNT(account_number) > 1
+    -> ORDER BY SUM(line_item_amount) DESC;
+-- +--------------------------------+----------------+---------------+
+-- | account_description            | count_of_items | line_item_sum |
+-- +--------------------------------+----------------+---------------+
+-- | Book Printing Costs            |              3 |      66748.44 |
+-- | Freight                        |             41 |      17624.19 |
+-- | Outside Services               |              3 |      13394.10 |
+-- | Book Production Costs          |              7 |       5174.66 |
+-- | Books, Dues, and Subscriptions |              4 |       4027.90 |
+-- | Direct Mail Advertising        |              5 |       3810.41 |
+-- | Computer Equipment             |              3 |       2137.05 |
+-- | Group Insurance                |              2 |        340.00 |
+-- | Telephone                      |              5 |        193.54 |
+-- | Office Supplies                |              3 |        175.80 |
+-- +--------------------------------+----------------+---------------+
+-- 10 rows in set (0.000 sec)
+
+
 
 
 
@@ -287,6 +312,38 @@ MariaDB [ap]> SELECT account_description, COUNT(account_number) AS 'count_of_ite
 -- This should return 22 rows. 
 --	Cut and paste your SQL statement and results set below.
 
+MariaDB [ap]> SELECT account_number, SUM(line_item_amount) AS line_item_sum
+    -> FROM invoice_line_items
+    -> GROUP BY account_number WITH ROLLUP;
+-- +----------------+---------------+
+-- | account_number | line_item_sum |
+-- +----------------+---------------+
+-- |            150 |         17.50 |
+-- |            160 |       2137.05 |
+-- |            170 |        356.48 |
+-- |            400 |     148759.97 |
+-- |            403 |       6175.12 |
+-- |            507 |       1600.00 |
+-- |            510 |        564.00 |
+-- |            520 |       1750.00 |
+-- |            521 |         16.62 |
+-- |            522 |        266.01 |
+-- |            523 |        450.00 |
+-- |            540 |       3900.77 |
+-- |            552 |        290.00 |
+-- |            553 |      27599.65 |
+-- |            570 |        175.80 |
+-- |            572 |       5207.32 |
+-- |            574 |        856.92 |
+-- |            580 |         50.00 |
+-- |            582 |        503.20 |
+-- |            589 |      13394.10 |
+-- |            591 |        220.00 |
+-- |           NULL |     214290.51 |
+-- +----------------+---------------+
+-- 22 rows in set (0.001 sec)
+
+
 
 	
 
@@ -302,6 +359,25 @@ MariaDB [ap]> SELECT account_description, COUNT(account_number) AS 'count_of_ite
 ----------------------------+---------------------------------------------------+
 -- This should return 2 rows. 
 --	Cut and paste your SQL statement and results set below.
+
+-- SELECT vendor_name, COUNT(DISTINCT account_number) AS number_of_gl_accounts
+-- FROM vendors
+-- NATURAL JOIN general_ledger_accounts
+-- GROUP BY vendor_name
+-- HAVING COUNT(DISTINCT account_number) > 1;
+
+-- SELECT vendor_name, COUNT(DISTINCT account_number) AS number_of_gl_accounts
+-- FROM invoice_line_items
+-- JOIN general_ledger_accounts ON general_ledger_accounts.account_number = vendors.default_account_number
+-- GROUP BY vendor_name
+-- HAVING COUNT(DISTINCT account_number) > 1;
+
+-- SELECT vendor_name, COUNT(DISTINCT general_ledger_accounts.account_number) AS number_of_gl_accounts
+-- FROM invoice_line_items
+-- JOIN vendors ON invoice_line_items.vendor_id = vendors.vendor_id
+-- JOIN general_ledger_accounts ON invoice_line_items.account_number = general_ledger_accounts.account_number
+-- GROUP BY vendor_name
+-- HAVING COUNT(DISTINCT general_ledger_accounts.account_number) > 1;
 
 
 
