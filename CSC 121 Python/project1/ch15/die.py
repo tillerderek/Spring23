@@ -1,3 +1,5 @@
+#A module containing functions for rolling a single die.
+
 from random import randint
 
 class Die:

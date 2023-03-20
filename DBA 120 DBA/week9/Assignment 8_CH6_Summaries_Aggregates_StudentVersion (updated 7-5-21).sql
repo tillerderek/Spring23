@@ -366,19 +366,7 @@ MariaDB [ap]> SELECT account_number, SUM(line_item_amount) AS line_item_sum
 -- GROUP BY vendor_name
 -- HAVING COUNT(DISTINCT account_number) > 1;
 
--- SELECT vendor_name, COUNT(DISTINCT account_number) AS number_of_gl_accounts
--- FROM invoice_line_items
--- JOIN general_ledger_accounts ON general_ledger_accounts.account_number = vendors.default_account_number
--- GROUP BY vendor_name
--- HAVING COUNT(DISTINCT account_number) > 1;
-
--- SELECT vendor_name, COUNT(DISTINCT general_ledger_accounts.account_number) AS number_of_gl_accounts
--- FROM invoice_line_items
--- JOIN vendors ON invoice_line_items.vendor_id = vendors.vendor_id
--- JOIN general_ledger_accounts ON invoice_line_items.account_number = general_ledger_accounts.account_number
--- GROUP BY vendor_name
--- HAVING COUNT(DISTINCT general_ledger_accounts.account_number) > 1;
-
+-- Having trouble finishing this one before the deadline. I will send an email to follow up on this one in particular. 
 
 
 -- (Q9 – Q11 - 9 pts ea)  FIX-ITS   (These questions have been removed as of 7-4-2021!)

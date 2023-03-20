@@ -1,4 +1,6 @@
-#15-1
+# The following programs produce a variety of visualizations for different programmatic problems.
+
+# 15-1
 # import matplotlib.pyplot as plt
 
 # x_values = [1, 2, 3, 4, 5]
@@ -19,7 +21,7 @@
 
 # plt.show
 
-#15-2
+# 15-2
 # import matplotlib.pyplot as plt
 
 # x_values = range(1, 6)
@@ -30,7 +32,7 @@
 
 # plt.show
 
-#15-3
+# 15-3
 
 # import matplotlib.pyplot as plt
 
@@ -45,7 +47,7 @@
 #     fig, ax = plt.subplots(figsize=(15, 9))
 #     point_numbers = range(rw.num_points)
 #     ax.plot(rw.x_values, rw.y_values, color='blue', linewidth=2)
-    
+
 #     #remove the axes.
 #     ax.get_xaxis().set_visible(False)
 #     ax.get_yaxis().set_visible(False)
@@ -57,7 +59,7 @@
 #     if keep_running == 'n':
 #         break
 
-#15-6
+# 15-6
 # from plotly.graph_objs import Bar, Layout
 # from plotly import offline
 
@@ -67,13 +69,13 @@
 # die_1 = Die(8)
 # die_2 = Die(8)
 
-# #Make some rolls, and store results in a list. 
+# #Make some rolls, and store results in a list.
 # results = []
 # for roll_num in range(1000):
 #     result = die_1.roll() + die_2.roll()
 #     results.append(result)
-    
-# #analyze the results. 
+
+# #analyze the results.
 # frequencies = []
 # max_result = die_1.num_sides + die_2.num_sides
 # for value in range(2, max_result+1):
@@ -100,13 +102,13 @@
 # die_1 = Die(100)
 # die_2 = Die(100)
 
-# #Make some rolls, and store results in a list. 
+# #Make some rolls, and store results in a list.
 # results = []
 # for roll_num in range(100_000):
 #     result = die_1.roll() + die_2.roll()
 #     results.append(result)
-    
-# #analyze the results. 
+
+# #analyze the results.
 # frequencies = []
 # max_result = die_1.num_sides + die_2.num_sides
 # for value in range(2, max_result+1):
@@ -124,7 +126,7 @@
 
 # print(frequencies)
 
-#15-7
+# 15-7
 # from plotly.graph_objs import Bar, Layout
 # from plotly import offline
 
@@ -135,13 +137,13 @@
 # die_2 = Die()
 # die_3 = Die()
 
-# #Make some rolls, and store results in a list. 
+# #Make some rolls, and store results in a list.
 # results = []
 # for roll_num in range(1000):
 #     result = die_1.roll() + die_2.roll() + die_3.roll()
 #     results.append(result)
-    
-# #analyze the results. 
+
+# #analyze the results.
 # frequencies = []
 # max_result = die_1.num_sides + die_2.num_sides
 # for value in range(3, max_result+1):
@@ -159,7 +161,7 @@
 
 # print(frequencies)
 
-#15-8
+# 15-8
 # from plotly.graph_objs import Bar, Layout
 # from plotly import offline
 
@@ -169,13 +171,13 @@
 # die_1 = Die()
 # die_2 = Die()
 
-# #Make some rolls, and store results in a list. 
+# #Make some rolls, and store results in a list.
 # results = []
 # for roll_num in range(1000):
 #     result = die_1.roll() * die_2.roll()
 #     results.append(result)
-    
-# #analyze the results. 
+
+# #analyze the results.
 # frequencies = []
 # max_result = die_1.num_sides * die_2.num_sides
 # for value in range(1, max_result+1):
@@ -193,7 +195,7 @@
 
 # print(frequencies)
 
-#15-9
+# 15-9
 # from plotly.graph_objs import Bar, Layout
 # from plotly import offline
 
@@ -203,13 +205,13 @@
 # die_1 = Die()
 # die_2 = Die()
 
-# #Make some rolls, and store results in a list. 
+# #Make some rolls, and store results in a list.
 # results = []
 # for roll_num in range(1000):
 #     result = die_1.roll() + die_2.roll()
 #     results.append(result)
-    
-# #analyze the results. 
+
+# #analyze the results.
 
 # max_result = die_1.num_sides + die_2.num_sides
 # frequencies = [results.count(value) for value in range(2, max_result+1)]
@@ -225,7 +227,30 @@
 
 # print(frequencies)
 
-#15-10
+# 15-20
+# import matplotlib.pyplot as plt
+# from die import Die
 
+# # Create a D6 and a D10.
+# die_1 = Die()
+# die_2 = Die()
 
+# # Make some rolls, and store results in a list.
+# results = []
+# for roll_num in range(1000):
+#     result = die_1.roll() + die_2.roll()
+#     results.append(result)
 
+# # Analyze the results.
+# max_result = die_1.num_sides + die_2.num_sides
+# frequencies = [results.count(value) for value in range(2, max_result + 1)]
+
+# # Visualize the results.
+# x_values = list(range(2, max_result + 1))
+# plt.bar(x_values, frequencies)
+# plt.title('Results of rolling two D6 1000 times.')
+# plt.xlabel('Result')
+# plt.ylabel('Frequency of Result')
+# plt.show()
+
+# print(frequencies)

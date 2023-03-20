@@ -1,3 +1,7 @@
+#The following programs produce a visualization of a list of numbers and their squares.
+
+#Program 1
+
 # import matplotlib.pyplot as plt
 
 # squares = [1, 4, 9, 16, 25]
@@ -23,6 +27,8 @@
 # ax.tick_params(axis='both', labelsize=14)
 
 # plt.show
+
+#Program 2
 
 import matplotlib.pyplot as plt
 

@@ -1,3 +1,7 @@
+#The following programs produce a visualization in the scatter graph format with a variety of styling applied.
+
+#Program 1
+
 # import matplotlib.pyplot as plt
 
 # plt.style.use('seaborn')
@@ -5,6 +9,8 @@
 # ax.scatter(2, 4)
 
 # plt.show()
+
+#Program 2
 
 # import matplotlib.pyplot as plt
 
@@ -21,6 +27,8 @@
 # ax.tick_params(axis='both', which='major', labelsize=14)
 
 # plt.show()
+
+#Program 3
 
 # import matplotlib.pyplot as plt
 
@@ -40,6 +48,8 @@
 # ax.tick_params(axis='both', which='major', labelsize=14)
 
 # plt.show()
+
+#Program 4
 
 # import matplotlib.pyplot as plt
 
@@ -61,6 +71,8 @@
 # ax.axis([0, 1100, 0, 1100000])
 
 # plt.show()
+
+#Program 5
 
 import matplotlib.pyplot as plt
 

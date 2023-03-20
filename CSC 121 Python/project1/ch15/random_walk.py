@@ -1,3 +1,5 @@
+##The following module contains functions used to make plot points for a random walk.
+
 from random import choice
 
 

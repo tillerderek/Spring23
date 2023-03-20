@@ -13,13 +13,13 @@ with open(filename) as f:
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
         try:
-          #had to convert to float
-          prcp = float(row[3])
+            # had to convert to float
+            prcp = float(row[3])
         except ValueError:
-          print(f"Missing data for {current_date}")
+            print(f"Missing data for {current_date}")
         else:
-          dates.append(current_date)
-          prcp_amounts.append(prcp)
+            dates.append(current_date)
+            prcp_amounts.append(prcp)
 
 # Plot the high temperatures.
 plt.style.use('seaborn')
