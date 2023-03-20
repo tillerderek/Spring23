@@ -1,3 +1,5 @@
+#The following program checks for status code response from an api call. 
+
 import requests
 import json
 
@@ -8,6 +10,6 @@ print(f"Status code: {r.status_code}")
 
 # Explore the structure of the data.
 response_dict = r.json()
-readable_file = 'project1/data/readable_hn_data.json'
+readable_file = 'data/readable_hn_data.json'
 with open(readable_file, 'w') as f:
     json.dump(response_dict, f, indent=4)

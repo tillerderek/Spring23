@@ -1,9 +1,12 @@
+# The following programs visualize high and low temps for Sitka, AK in 2018.
+
+# Program 1
 # import csv
 # from datetime import datetime
 
 # import matplotlib.pyplot as plt
 
-# filename = 'project1/data/sitka_weather_2018_simple.csv'
+# filename = 'data/sitka_weather_2018_simple.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -33,17 +36,18 @@
 
 # plt.show()
 
+# Program 2
 import csv
 from datetime import datetime
 
 import matplotlib.pyplot as plt
 
-filename = 'project1/data/sitka_weather_2018_simple.csv'
+filename = 'data/sitka_weather_2018_simple.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
 
-    #Get dates and high and low temps from this file.
+    # Get dates and high and low temps from this file.
     dates, highs, lows = [], [], []
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
@@ -68,4 +72,3 @@ plt.ylabel("Temperature (F)", fontsize=16)
 plt.tick_params(axis='both', which='major', labelsize=16)
 
 plt.show()
-

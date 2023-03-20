@@ -1,9 +1,11 @@
+#This program visualizes the average daily precipitation in Asheville, NC in 
+#2022.
 import csv
 from datetime import datetime
 
 import matplotlib.pyplot as plt
 
-filename = 'project1/data/avl_precip.csv'
+filename = 'data/avl_precip.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)

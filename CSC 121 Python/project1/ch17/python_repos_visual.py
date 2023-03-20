@@ -1,3 +1,7 @@
+# The following programs use the github API to visualize the most starred python
+# projects.
+
+# Project 1
 # import requests
 
 # from plotly.graph_objs import Bar
@@ -38,6 +42,7 @@
 # fig = {'data': data, 'layout': my_layout}
 # offline.plot(fig, filename='python_repos.html')
 
+# Program 2
 # import requests
 
 # from plotly.graph_objs import Bar
@@ -93,6 +98,7 @@
 # fig = {'data': data, 'layout': my_layout}
 # offline.plot(fig, filename='python_repos.html')
 
+# Program 3
 import requests
 
 from plotly.graph_objs import Bar

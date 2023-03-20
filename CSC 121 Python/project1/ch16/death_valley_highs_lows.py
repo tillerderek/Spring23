@@ -1,7 +1,12 @@
+# The following programs visualize the high and low temps in Death Valley, CA in
+# 2018.
+
+# Program 1
+
 # import csv
 
 
-# filename = 'project1/data/death_valley_2018_simple.csv'
+# filename = 'data/death_valley_2018_simple.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -14,7 +19,7 @@
 
 # import matplotlib.pyplot as plt
 
-# filename = 'project1/data/death_valley_2018_simple.csv'
+# filename = 'data/death_valley_2018_simple.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -45,12 +50,14 @@
 
 # plt.show()
 
+# Program 2
+
 import csv
 from datetime import datetime
 
 import matplotlib.pyplot as plt
 
-filename = 'project1/data/death_valley_2018_simple.csv'
+filename = 'data/death_valley_2018_simple.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
@@ -77,7 +84,7 @@ ax.plot(dates, lows, c='blue', alpha=0.5)
 plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
 
 # Format plot.
-title= "Daily high and low temperatures - 2018\nDeath Valley, CA"
+title = "Daily high and low temperatures - 2018\nDeath Valley, CA"
 plt.title(title, fontsize=20)
 plt.xlabel('', fontsize=16)
 fig.autofmt_xdate()

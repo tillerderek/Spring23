@@ -1,3 +1,6 @@
+#The following programs performs various visualizations, using API's from 
+#several sources. 
+
 # 17-1
 # import requests
 
@@ -219,5 +222,3 @@
 #     repo_dicts = get_repo_dicts(r)
 #     repo_links, stars, labels = plotting_data(repo_dicts)
 #     create_graph(repo_links, stars, labels)
-
-#17-4

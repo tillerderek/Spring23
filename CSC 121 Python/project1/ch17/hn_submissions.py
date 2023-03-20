@@ -1,3 +1,6 @@
+# The following program returns information about popular submissions to Hacker
+# News
+
 from operator import itemgetter
 
 import requests
@@ -16,7 +19,7 @@ for submission_id in submission_ids[:10]:
     r = requests.get(url)
     print(f"id: {submission_id}\tstatus: {r.status_code}")
     response_dict = r.json()
-    
+
     # Build a dictionary for each article.
     submission_dict = {
         'title': response_dict['title'],
@@ -24,9 +27,9 @@ for submission_id in submission_ids[:10]:
         'comments': response_dict['descendants'],
     }
     submission_dicts.append(submission_dict)
-    
+
 submission_dicts = sorted(submission_dicts, key=itemgetter('comments'),
-                            reverse=True)
+                          reverse=True)
 
 for submission_dict in submission_dicts:
     print(f"\nTitle: {submission_dict['title']}")

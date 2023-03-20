@@ -1,10 +1,13 @@
+# The following programs visualize data concerning weather, earthquakes, and
+# fires from JSON and CSV files.
+
 # 16-1
 # import csv
 # from datetime import datetime
 
 # import matplotlib.pyplot as plt
 
-# filename = 'project1/data/sitka_weather_2018_simple.csv'
+# filename = 'data/sitka_weather_2018_simple.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -44,7 +47,7 @@
 
 # from matplotlib import pyplot as plt
 
-# filename = 'project1/data/sitka_weather_2018_simple.csv'
+# filename = 'data/sitka_weather_2018_simple.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -82,7 +85,7 @@
 
 # import matplotlib.pyplot as plt
 
-# filename = 'project1/data/death_valley_2018_simple.csv'
+# filename = 'data/death_valley_2018_simple.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -125,7 +128,7 @@
 
 # import matplotlib.pyplot as plt
 
-# filename = 'project1/data/san_fran_2018.csv'
+# filename = 'data/san_fran_2018.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -168,7 +171,7 @@
 
 # from matplotlib import pyplot as plt
 
-# filename = 'project1/data/death_valley_2018_simple.csv'
+# filename = 'data/death_valley_2018_simple.csv'
 # station_name = ''
 # with open(filename) as f:
 #     reader = csv.reader(f)
@@ -225,7 +228,7 @@
 
 # from matplotlib import pyplot as plt
 
-# filename = 'project1/data/death_valley_2018_simple.csv'
+# filename = 'data/death_valley_2018_simple.csv'
 # station_name = ''
 # with open(filename) as f:
 #     reader = csv.reader(f)
@@ -323,7 +326,7 @@
 
 # import matplotlib.pyplot as plt
 
-# filename = 'project1/data/avl_precip.csv'
+# filename = 'data/avl_precip.csv'
 # with open(filename) as f:
 #     reader = csv.reader(f)
 #     header_row = next(reader)
@@ -362,7 +365,7 @@
 # from plotly import offline
 
 # # explore the structure of the data.
-# filename = 'project1/data/eq_data_30_day_m1.json'
+# filename = 'data/eq_data_30_day_m1.json'
 # with open(filename) as f:
 #     all_eq_data = json.load(f)
 
@@ -402,7 +405,7 @@
 # from plotly import offline
 
 # # explore the structure of the data.
-# filename = 'project1/data/eq_data_30_day_m1.json'
+# filename = 'data/eq_data_30_day_m1.json'
 # with open(filename) as f:
 #     all_eq_data = json.load(f)
 
@@ -440,12 +443,12 @@
 # import json
 
 # # Explore the structure of the data.
-# filename = 'project1/data/eq_last_day.geojson'
+# filename = 'data/eq_last_day.geojson'
 # #had to add encoding to parse geojson data for some reason
 # with open(filename, encoding='utf-8') as f:
 #     data = json.load(f)
 
-# readable_file = 'project1/data/test.geojson'
+# readable_file = 'data/test.geojson'
 # with open(readable_file, 'w') as f:
 #     json.dump(data, f, indent=4)
 
@@ -455,7 +458,7 @@
 # from plotly import offline
 
 # # Explore the structure of the data.
-# filename = 'project1/data/eq_last_day.geojson'
+# filename = 'data/eq_last_day.geojson'
 # #add encoding
 # with open(filename, encoding='utf-8') as f:
 #     all_eq_data = json.load(f)
@@ -487,49 +490,49 @@
 # offline.plot(fig, filename='global_earthquakes.html')
 
 # 16-9
-# import csv
-# from datetime import datetime
+import csv
+from datetime import datetime
 
-# from plotly.graph_objs import Scattergeo, Layout
+from plotly.graph_objs import Scattergeo, Layout
 
-# from plotly import offline
+from plotly import offline
 
 
-# # processing csv
-# filename = 'project1/data/world_fires_1_day.csv'
-# with open(filename) as f:
-#     reader = csv.reader(f)
-#     header_row = next(reader)
+# processing csv
+filename = 'data/world_fires_1_day.csv'
+with open(filename) as f:
+    reader = csv.reader(f)
+    header_row = next(reader)
 
-#     dates, brightnesses = [], []
-#     lats, lons = [], []
-#     hover_texts = []
+    dates, brightnesses = [], []
+    lats, lons = [], []
+    hover_texts = []
 
-#     for row in reader:
-#         date = datetime.strptime(row[5], '%Y-%m-%d')
-#         brightness = float(row[2])
+    for row in reader:
+        date = datetime.strptime(row[5], '%Y-%m-%d')
+        brightness = float(row[2])
 
-#         dates.append(date)
-#         brightnesses.append(brightness)
-#         lats.append(row[0])
-#         lons.append(row[1])
+        dates.append(date)
+        brightnesses.append(brightness)
+        lats.append(row[0])
+        lons.append(row[1])
 
-# # fire map
-# data = [{
-#     'type': 'scattergeo',
-#     'lon': lons,
-#     'lat': lats,
-#     'text': hover_texts,
-#     'marker': {
-#         'size': [brightness/30 for brightness in brightnesses],
-#         'color': brightnesses,
-#         'colorscale': 'Reds',
-#         'reversescale': True,
-#         'colorbar': {'title': 'Brightness'},
-#     },
-# }]
+# fire map
+data = [{
+    'type': 'scattergeo',
+    'lon': lons,
+    'lat': lats,
+    'text': hover_texts,
+    'marker': {
+        'size': [brightness/30 for brightness in brightnesses],
+        'color': brightnesses,
+        'colorscale': 'Reds',
+        'reversescale': True,
+        'colorbar': {'title': 'Brightness'},
+    },
+}]
 
-# my_layout = Layout(title='Global Fire Activity')
+my_layout = Layout(title='Global Fire Activity')
 
-# fig = {'data': data, 'layout': my_layout}
-# offline.plot(fig, filename='global_fires.html')
+fig = {'data': data, 'layout': my_layout}
+offline.plot(fig, filename='global_fires.html')

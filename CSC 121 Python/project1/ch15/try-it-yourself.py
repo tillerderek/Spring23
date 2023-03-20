@@ -228,29 +228,29 @@
 # print(frequencies)
 
 # 15-20
-# import matplotlib.pyplot as plt
-# from die import Die
+import matplotlib.pyplot as plt
+from die import Die
 
-# # Create a D6 and a D10.
-# die_1 = Die()
-# die_2 = Die()
+# Create a D6 and a D10.
+die_1 = Die()
+die_2 = Die()
 
-# # Make some rolls, and store results in a list.
-# results = []
-# for roll_num in range(1000):
-#     result = die_1.roll() + die_2.roll()
-#     results.append(result)
+# Make some rolls, and store results in a list.
+results = []
+for roll_num in range(1000):
+    result = die_1.roll() + die_2.roll()
+    results.append(result)
 
-# # Analyze the results.
-# max_result = die_1.num_sides + die_2.num_sides
-# frequencies = [results.count(value) for value in range(2, max_result + 1)]
+# Analyze the results.
+max_result = die_1.num_sides + die_2.num_sides
+frequencies = [results.count(value) for value in range(2, max_result + 1)]
 
-# # Visualize the results.
-# x_values = list(range(2, max_result + 1))
-# plt.bar(x_values, frequencies)
-# plt.title('Results of rolling two D6 1000 times.')
-# plt.xlabel('Result')
-# plt.ylabel('Frequency of Result')
-# plt.show()
+# Visualize the results.
+x_values = list(range(2, max_result + 1))
+plt.bar(x_values, frequencies)
+plt.title('Results of rolling two D6 1000 times.')
+plt.xlabel('Result')
+plt.ylabel('Frequency of Result')
+plt.show()
 
-# print(frequencies)
+print(frequencies)
