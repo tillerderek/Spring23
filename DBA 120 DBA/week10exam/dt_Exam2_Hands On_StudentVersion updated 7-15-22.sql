@@ -125,9 +125,17 @@ SELECT product_code, product_name, list_price, discount_percent FROM products OR
 --		Sort the result set by discount price in descending sequence.
 --		Use the LIMIT clause so the result set contains only the first 5 rows.
 --		Place SQL and result set here. 
-NOT FINISHED
-
-SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_percent AS 'Discount %' (list_price * FROM products WHERE list_price > 500 AND list_price < 2000 ORDER BY date_added DESC;
+ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_percent AS 'Discount %', ROUND((discount_percent / 100) * list_price, 2) AS 'Amount of Discount', ROUND(list_price - ((discount_percent / 100) * list_price), 2) AS 'Discount Price' FROM products ORDER BY ROUND(list_price - ((discount_percent / 100) * list_price), 2) DESC LIMIT 5;
+-- +--------------------------------------+------------+------------+--------------------+----------------+
+-- | Product Name                         | List Price | Discount % | Amount of Discount | Discount Price |
+-- +--------------------------------------+------------+------------+--------------------+----------------+
+-- | Gibson SG                            |    2517.00 |      52.00 |            1308.84 |        1208.16 |
+-- | Gibson Les Paul                      |    1199.00 |      30.00 |             359.70 |         839.30 |
+-- | Tama 5-Piece Drum Set with Cymbals   |     799.99 |      15.00 |             120.00 |         679.99 |
+-- | Fender Precision                     |     799.99 |      30.00 |             240.00 |         559.99 |
+-- | Ludwig 5-piece Drum Set with Cymbals |     699.99 |      30.00 |             210.00 |         489.99 |
+-- +--------------------------------------+------------+------------+--------------------+----------------+
+-- 5 rows in set (0.001 sec)
 
 
 
@@ -145,6 +153,15 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 
 -- 		Return only the rows where the ship_date column contains a null value.
 -- 		Place SQL and result set here. 
+ SELECT order_id AS 'Order ID', order_date AS 'Date of Order', ship_date AS 'Date Shipped' FROM orders WHERE ship_date IS  NULL;
+-- +----------+---------------------+--------------+
+-- | Order ID | Date of Order       | Date Shipped |
+-- +----------+---------------------+--------------+
+-- |        6 | 2018-03-31 18:37:22 | NULL         |
+-- |        8 | 2018-04-02 11:26:38 | NULL         |
+-- |        9 | 2018-04-03 12:22:31 | NULL         |
+-- +----------+---------------------+--------------+
+-- 3 rows in set (0.000 sec)
 
 	
 -- 7.	Write a SELECT statement without a FROM clause that creates a result set with these columns:
@@ -160,6 +177,13 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 
 -- 		To calculate the fourth column, add the expressions you used for the first and third columns.
 --		Place SQL and result set here. 
+ SELECT 100 AS Price, .07 AS `Tax Rate`, (100 * .07) AS `Amount of Tax`, (100 + (100 * .07)) AS `Total Amount`;
+-- +-------+----------+---------------+--------------+
+-- | Price | Tax Rate | Amount of Tax | Total Amount |
+-- +-------+----------+---------------+--------------+
+-- |   100 |     0.07 |          7.00 |       107.00 |
+-- +-------+----------+---------------+--------------+
+-- 1 row in set (0.000 sec)
 
 
 
@@ -180,6 +204,40 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 --		There are several ways to code this using different syntax (4 come to mind immediately), 
 --		please show "two different ways syntactically." 
 --		Place SQL and result set here for both. 
+SELECT c.category_name AS Category, p.product_name AS Product, p.list_price AS Price FROM categories c JOIN products p ON c.category_id = p.category_id ORDER BY c.category_name ASC, p.product_name ASC;
+-- +----------+--------------------------------------+---------+
+-- | Category | Product                              | Price   |
+-- +----------+--------------------------------------+---------+
+-- | Basses   | Fender Precision                     |  799.99 |
+-- | Basses   | Hofner Icon                          |  499.99 |
+-- | Drums    | Ludwig 5-piece Drum Set with Cymbals |  699.99 |
+-- | Drums    | Tama 5-Piece Drum Set with Cymbals   |  799.99 |
+-- | Guitars  | Fender Stratocaster                  |  699.00 |
+-- | Guitars  | Gibson Les Paul                      | 1199.00 |
+-- | Guitars  | Gibson SG                            | 2517.00 |
+-- | Guitars  | Rodriguez Caballero 11               |  415.00 |
+-- | Guitars  | Washburn D10S                        |  299.00 |
+-- | Guitars  | Yamaha FG700S                        |  489.99 |
+-- +----------+--------------------------------------+---------+
+-- 10 rows in set (0.001 sec)
+
+SELECT category_name AS Category, product_name AS Product, list_price AS Price FROM categories NATURAL JOIN products ORDER BY category_name ASC, product_name ASC;
+-- +----------+--------------------------------------+---------+
+-- | Category | Product                              | Price   |
+-- +----------+--------------------------------------+---------+
+-- | Basses   | Fender Precision                     |  799.99 |
+-- | Basses   | Hofner Icon                          |  499.99 |
+-- | Drums    | Ludwig 5-piece Drum Set with Cymbals |  699.99 |
+-- | Drums    | Tama 5-Piece Drum Set with Cymbals   |  799.99 |
+-- | Guitars  | Fender Stratocaster                  |  699.00 |
+-- | Guitars  | Gibson Les Paul                      | 1199.00 |
+-- | Guitars  | Gibson SG                            | 2517.00 |
+-- | Guitars  | Rodriguez Caballero 11               |  415.00 |
+-- | Guitars  | Washburn D10S                        |  299.00 |
+-- | Guitars  | Yamaha FG700S                        |  489.99 |
+-- +----------+--------------------------------------+---------+
+-- 10 rows in set (0.001 sec)
+
 
 
 -- 9.	Write a SELECT statement that joins the Customers table to the Addresses table and returns 
@@ -199,6 +257,21 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 -- 		Return one row for each customer, but only return addresses that are the shipping address for a 
 -- 		customer.
 --		Place SQL and result set here. 
+ SELECT first_name AS 'First Name', last_name AS 'Last Name', line1 AS 'Shipping Address', city AS City, state AS States, zip_code AS Zip FROM customers c NATURAL JOIN addresses a WHERE c.shipping_address_id = a.address_id;
+-- +------------+-----------+-------------------------+---------------+--------+-------+
+-- | First Name | Last Name | Shipping Address        | City          | States | Zip   |
+-- +------------+-----------+-------------------------+---------------+--------+-------+
+-- | Allan      | Sherwood  | 100 East Ridgewood Ave. | Paramus       | NJ     | 07652 |
+-- | Barry      | Zimmer    | 16285 Wendell St.       | Omaha         | NE     | 68135 |
+-- | Christine  | Brown     | 19270 NW Cornell Rd.    | Beaverton     | OR     | 97006 |
+-- | David      | Goldstein | 186 Vermont St.         | San Francisco | CA     | 94110 |
+-- | Erin       | Valentino | 6982 Palm Ave.          | Fresno        | CA     | 93711 |
+-- | Frank Lee  | Wilson    | 23 Mountain View St.    | Denver        | CO     | 80208 |
+-- | Gary       | Hernandez | 7361 N. 41st St.        | New York      | NY     | 10012 |
+-- | Heather    | Esway     | 2381 Buena Vista St.    | Los Angeles   | CA     | 90023 |
+-- +------------+-----------+-------------------------+---------------+--------+-------+
+-- 8 rows in set (0.001 sec)
+
 
 
 -- 10.	Write a SELECT statement that joins the Customers, Orders, Order_Items, and Products tables.
@@ -219,6 +292,24 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 -- 		Use aliases for the tables.
 -- 		Sort the final result set by last_name, order_date, and product_name.
 -- 		Place SQL and result set here. 
+ SELECT c.last_name AS 'Last Name', c.first_name AS 'First Name', o.order_date AS 'Date of Order', p.product_name AS Product, oi.item_price AS Price, oi.discount_amount AS Discount, oi.quantity AS Quantity FROM customers c JOIN orders o ON c.customer_id = o.customer_id JOIN order_items oi ON o.order_id = oi.order_id JOIN products p ON oi.product_id = p.product_id ORDER BY c.last_name ASC, o.order_date ASC, p.product_name ASC;
+-- +-----------+------------+---------------------+--------------------------------------+---------+----------+----------+
+-- | Last Name | First Name | Date of Order       | Product                              | Price   | Discount | Quantity |
+-- +-----------+------------+---------------------+--------------------------------------+---------+----------+----------+
+-- | Brown     | Christine  | 2018-03-30 15:22:31 | Gibson Les Paul                      | 1199.00 |   359.70 |        2 |
+-- | Goldstein | David      | 2018-03-31 05:43:11 | Washburn D10S                        |  299.00 |     0.00 |        1 |
+-- | Goldstein | David      | 2018-04-03 12:22:31 | Fender Stratocaster                  |  699.00 |   209.70 |        1 |
+-- | Hernandez | Gary       | 2018-04-02 11:26:38 | Tama 5-Piece Drum Set with Cymbals   |  799.99 |   120.00 |        1 |
+-- | Sherwood  | Allan      | 2018-03-28 09:40:28 | Gibson Les Paul                      | 1199.00 |   359.70 |        1 |
+-- | Sherwood  | Allan      | 2018-03-29 09:44:58 | Gibson SG                            | 2517.00 |  1308.84 |        1 |
+-- | Sherwood  | Allan      | 2018-03-29 09:44:58 | Rodriguez Caballero 11               |  415.00 |   161.85 |        1 |
+-- | Valentino | Erin       | 2018-03-31 18:37:22 | Washburn D10S                        |  299.00 |     0.00 |        1 |
+-- | Wilson    | Frank Lee  | 2018-04-01 23:11:12 | Fender Precision                     |  799.99 |   240.00 |        1 |
+-- | Wilson    | Frank Lee  | 2018-04-01 23:11:12 | Fender Stratocaster                  |  699.00 |   209.70 |        1 |
+-- | Wilson    | Frank Lee  | 2018-04-01 23:11:12 | Ludwig 5-piece Drum Set with Cymbals |  699.99 |   210.00 |        1 |
+-- | Zimmer    | Barry      | 2018-03-28 11:23:20 | Yamaha FG700S                        |  489.99 |   186.20 |        1 |
+-- +-----------+------------+---------------------+--------------------------------------+---------+----------+----------+
+-- 12 rows in set (0.001 sec)
 
 
 -- 11.	Write a SELECT statement that returns these two columns:
@@ -236,7 +327,13 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 -- 		Sort the result set by product_name.
 -- 		Place SQL and result set here. 
 
-
+SELECT p1.product_name AS Product, p1.list_price AS Price FROM products p1 JOIN products p2 ON p1.list_price = p2.list_price AND p1.product_id <> p2.product_id ORDER BY p1.product_name ASC;
+-- +------------------------------------+--------+
+-- | Product                            | Price  |
+-- +------------------------------------+--------+
+-- | Fender Precision                   | 799.99 |
+-- | Tama 5-Piece Drum Set with Cymbals | 799.99 |
++------------------------------------+
 
 -- 12.	Write a SELECT statement that returns these two columns: 
 
@@ -250,6 +347,13 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 -- 		Return one row for each category that has never been used. 
 --		Hint: Use a left or right join and return only the unmatched rows.
 -- 		Place SQL and result set here. 
+SELECT c.category_name AS Category, p.product_id AS 'Product ID' FROM categories c LEFT JOIN products p ON c.category_id = p.category_id WHERE p.category_id IS NULL;
+-- +-----------+------------+
+-- | Category  | Product ID |
+-- +-----------+------------+
+-- | Keyboards |       NULL |
+-- +-----------+------------+
+-- 1 row in set (0.000 sec)
 
 
 -- 13.	Use the UNION operator to generate a result set consisting of three columns from the 
@@ -270,6 +374,22 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 --		they produce the desired result. 
 --		Place SQL and result set here. 
 
+SELECT 'SHIPPED' AS Ship_Status, order_id AS Order_ID, order_date AS Order_Date FROM orders WHERE ship_date IS NOT NULL UNION SELECT 'NOT SHIPPED' AS Ship_Status, order_id AS Order_ID, order_date AS Order_Date FROM orders WHERE ship_date IS NULL ORDER BY Order_Date;
+-- +-------------+----------+---------------------+
+-- | Ship_Status | Order_ID | Order_Date          |
+-- +-------------+----------+---------------------+
+-- | SHIPPED     |        1 | 2018-03-28 09:40:28 |
+-- | SHIPPED     |        2 | 2018-03-28 11:23:20 |
+-- | SHIPPED     |        3 | 2018-03-29 09:44:58 |
+-- | SHIPPED     |        4 | 2018-03-30 15:22:31 |
+-- | SHIPPED     |        5 | 2018-03-31 05:43:11 |
+-- | NOT SHIPPED |        6 | 2018-03-31 18:37:22 |
+-- | SHIPPED     |        7 | 2018-04-01 23:11:12 |
+-- | NOT SHIPPED |        8 | 2018-04-02 11:26:38 |
+-- | NOT SHIPPED |        9 | 2018-04-03 12:22:31 |
+-- +-------------+----------+---------------------+
+-- 9 rows in set (0.001 sec)
+
 
 --  Section E: Summary queries  (4 x 6 ea  = 24 pts)
 
@@ -283,6 +403,14 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 -----------------------+----------------------------------------------------------+
 
 --		Place SQL and result set here. 
+ SELECT COUNT(order_id) AS 'Order Count', SUM(tax_amount) AS 'Total Tax' FROM orders;
+-- +-------------+-----------+
+-- | Order Count | Total Tax |
+-- +-------------+-----------+
+-- |           9 |    122.24 |
+-- +-------------+-----------+
+-- 1 row in set (0.000 sec)
+
 
 
 -- 15.	Write a SELECT statement that returns one row for each category that has products.  
@@ -298,6 +426,15 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 
 --		Sort the result set so the category with the most products appears first.
 --		Place SQL and result set here. 
+SELECT c.category_name AS Category, COUNT(*) AS 'Number of Products', MAX(p.list_price) AS 'Most Expensive Price' FROM categories c INNER JOIN products p ON c.category_id = p.category_id GROUP BY c.category_id ORDER BY COUNT(*) DESC;
+-- +----------+--------------------+----------------------+
+-- | Category | Number of Products | Most Expensive Price |
+-- +----------+--------------------+----------------------+
+-- | Guitars  |                  6 |              2517.00 |
+-- | Basses   |                  2 |               799.99 |
+-- | Drums    |                  2 |               799.99 |
+-- +----------+--------------------+----------------------+
+-- 3 rows in set (0.001 sec)
 
 
 -- 16.	Write a SELECT statement that returns one row for each customer that has orders with 
@@ -313,6 +450,16 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 -- 		Return only those rows where the customer has more than 1 order.
 --		Sort the result set in descending sequence by the number of orders per customer.
 --		Place SQL and result set here. 
+ SELECT c.email_address AS 'Email Address', COUNT(*) AS 'Total Orders' FROM customers c JOIN orders o ON c.customer_id = o.customer_id GROUP BY c.customer_id HAVING COUNT(*) > 1 ORDER BY COUNT(*) DESC;
+-- +-----------------------------+--------------+
+-- | Email Address               | Total Orders |
+-- +-----------------------------+--------------+
+-- | allan.sherwood@yahoo.com    |            2 |
+-- | david.goldstein@hotmail.com |            2 |
+-- +-----------------------------+--------------+
+-- 2 rows in set (0.000 sec)
+
+
 
 
 -- 17.	Write a SELECT statement that answers this question: What is the total amount ordered for 
@@ -331,6 +478,25 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 --		Place SQL and result set here. 
 
 
+-- Used the COALESCE function to add the grand total title to the rollup field
+ SELECT COALESCE(p.product_name, 'GRAND TOTAL') AS 'Product Name', SUM((oi.item_price - oi.discount_amount) * oi.quantity) AS 'Total Amount' FROM products p JOIN order_items oi ON p.product_id = oi.product_id GROUP BY p.product_name WITH ROLLUP;
+-- +--------------------------------------+--------------+
+-- | Product Name                         | Total Amount |
+-- +--------------------------------------+--------------+
+-- | Fender Precision                     |       559.99 |
+-- | Fender Stratocaster                  |       978.60 |
+-- | Gibson Les Paul                      |      2517.90 |
+-- | Gibson SG                            |      1208.16 |
+-- | Ludwig 5-piece Drum Set with Cymbals |       489.99 |
+-- | Rodriguez Caballero 11               |       253.15 |
+-- | Tama 5-Piece Drum Set with Cymbals   |       679.99 |
+-- | Washburn D10S                        |       598.00 |
+-- | Yamaha FG700S                        |       303.79 |
+-- | GRAND TOTAL                          |      7589.57 |
+-- +--------------------------------------+--------------+
+-- 10 rows in set (0.001 sec)
+
+
 -- BONUS QUESTION: 5 points 
 
 -- 18.	Write a SELECT statement that answers this question: Which customers have ordered more 
@@ -342,6 +508,18 @@ SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_perc
 --		Email Address		 |  The email address from the Customers table                          |
 --		Number of Products   |	The count of distinct products from the customer’s orders           |
 -----------------------------+----------------------------------------------------------------------+
+
+SELECT c.email_address AS 'Email Address', COUNT(DISTINCT oi.product_id) AS 'Number of Products' FROM customers c JOIN orders o ON c.customer_id = o.customer_id JOIN order_items oi ON o.order_id = oi.order_id GROUP BY c.customer_id HAVING COUNT(DISTINCT oi.product_id) > 1;
+
+-- +-----------------------------+--------------------+
+-- | Email Address               | Number of Products |
+-- +-----------------------------+--------------------+
+-- | allan.sherwood@yahoo.com    |                  3 |
+-- | david.goldstein@hotmail.com |                  2 |
+-- | frankwilson@sbcglobal.net   |                  3 |
+-- +-----------------------------+--------------------+
+-- 3 rows in set (0.001 sec)
+
 
 --		Place SQL and result set here. 
 
