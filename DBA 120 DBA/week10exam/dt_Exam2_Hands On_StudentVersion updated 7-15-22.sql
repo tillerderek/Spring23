@@ -125,6 +125,10 @@ SELECT product_code, product_name, list_price, discount_percent FROM products OR
 --		Sort the result set by discount price in descending sequence.
 --		Use the LIMIT clause so the result set contains only the first 5 rows.
 --		Place SQL and result set here. 
+NOT FINISHED
+
+SELECT product_name AS 'Product Name', list_price AS 'List Price', discount_percent AS 'Discount %' (list_price * FROM products WHERE list_price > 500 AND list_price < 2000 ORDER BY date_added DESC;
+
 
 
 -- Section C: Work with nulls and test expressions  (2 x 4 ea  = 8 pts)
