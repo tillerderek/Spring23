@@ -27,21 +27,41 @@
 
 -- 1.	a. Use the appropriate MySQL command to find the column definitions for the categories 
 --      and the products tables …paste them here.  
+desc categories;
+desc products;
 
 
 --		b. If you were to join these two tables, what field(s) would you use in your join condition?  
-		
+		category_id
 
 -- Section B: Retreive data from a single table  (4 x 5 ea  = 20 pts)
 
 -- 2.	Write a SELECT statement that returns four columns from the Products table:   
 --		product_code,   product_name, list_price, and discount_percent. 
 --		Then, run this  statement to make sure it works correctly.
+SELECT product_code, product_name, list_price, discount_percent
+    -> FROM products;
 
 --		Add an ORDER BY clause to this statement that sorts the result set by list price 
 --		in descending sequence. Then, run this statement again to make sure it works correctly.
 --		This is a good way to build and test a statement, one clause at a time.
 --		Place SQL and result set here. 
+SELECT product_code, product_name, list_price, discount_percent FROM products ORDER BY list_price DESC;
+-- +--------------+--------------------------------------+------------+------------------+
+-- | product_code | product_name                         | list_price | discount_percent |
+-- +--------------+--------------------------------------+------------+------------------+
+-- | sg           | Gibson SG                            |    2517.00 |            52.00 |
+-- | les_paul     | Gibson Les Paul                      |    1199.00 |            30.00 |
+-- | precision    | Fender Precision                     |     799.99 |            30.00 |
+-- | tama         | Tama 5-Piece Drum Set with Cymbals   |     799.99 |            15.00 |
+-- | ludwig       | Ludwig 5-piece Drum Set with Cymbals |     699.99 |            30.00 |
+-- | strat        | Fender Stratocaster                  |     699.00 |            30.00 |
+-- | hofner       | Hofner Icon                          |     499.99 |            25.00 |
+-- | fg700s       | Yamaha FG700S                        |     489.99 |            38.00 |
+-- | rodriguez    | Rodriguez Caballero 11               |     415.00 |            39.00 |
+-- | washburn     | Washburn D10S                        |     299.00 |             0.00 |
+-- +--------------+--------------------------------------+------------+------------------+
+-- 10 rows in set (0.000 sec)
 
 
 -- 3.	Write a SELECT statement that returns one column from the Customers table named full_name 
@@ -51,6 +71,16 @@
 --		Sort the result set by last name in ascending sequence.
 --		Return only the customers whose last name begins with letters from M to Z.
 --		Place SQL and result set here. 
+ SELECT CONCAT_WS(", ", last_name, first_name) AS full_name FROM customers WHERE last_name >= 'm' ORDER BY last_name;
+-- +-------------------+
+-- | full_name         |
+-- +-------------------+
+-- | Sherwood, Allan   |
+-- | Valentino, Erin   |
+-- | Wilson, Frank Lee |
+-- | Zimmer, Barry     |
+-- +-------------------+
+-- 4 rows in set (0.000 sec)
 
 
 -- 4.	Write a SELECT statement that returns these columns from the Products table:
@@ -66,6 +96,17 @@
 --		Return only the rows with a list price that’s greater than 500 and less than 2000.
 --		Sort the result set in descending sequence by the date_added column.
 --		Place SQL and result set here. 
+ SELECT product_name AS 'Product Name', list_price AS 'List Price', date_added AS 'Date Added' FROM products WHERE list_price > 500 AND list_price < 2000 ORDER BY date_added DESC;
+-- +--------------------------------------+------------+---------------------+
+-- | Product Name                         | List Price | Date Added          |
+-- +--------------------------------------+------------+---------------------+
+-- | Tama 5-Piece Drum Set with Cymbals   |     799.99 | 2018-07-30 13:14:15 |
+-- | Ludwig 5-piece Drum Set with Cymbals |     699.99 | 2018-07-30 12:46:40 |
+-- | Fender Precision                     |     799.99 | 2018-06-01 11:29:35 |
+-- | Gibson Les Paul                      |    1199.00 | 2017-12-05 16:33:13 |
+-- | Fender Stratocaster                  |     699.00 | 2017-10-30 09:32:40 |
+-- +--------------------------------------+------------+---------------------+
+-- 5 rows in set (0.000 sec)
 
 
 -- 5.	Write a SELECT statement that returns these column names and data from the Products table:
