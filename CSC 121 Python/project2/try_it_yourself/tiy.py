@@ -12,4 +12,11 @@
 # written before. 
 
 #18-4
-# contained in pizzeria project
+# contained in pizzeria project dir
+
+#18-5
+#contained in meal_planner project dir
+
+#18-6
+#contained in pizzeria project dir
+
