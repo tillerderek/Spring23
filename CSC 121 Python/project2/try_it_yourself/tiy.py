@@ -12,18 +12,7 @@
 # written before. 
 
 #18-4
-<<<<<<< HEAD
 # contained in pizzeria project folder
 
 #18-5
 #contained in meal_planner folder
-=======
-# contained in pizzeria project dir
-
-#18-5
-#contained in meal_planner project dir
-
-#18-6
-#contained in pizzeria project dir
-
->>>>>>> 5919f17ca26ca5341be36f53b70d4c09c59953d8
