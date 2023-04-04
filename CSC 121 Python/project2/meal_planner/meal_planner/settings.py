@@ -20,7 +20,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+<<<<<<< HEAD
 SECRET_KEY = 'django-insecure-uppvvi6kujug_=hv$u9idv+l)#*j(zpc$%gfz0@ll69+3=mw&&'
+=======
+SECRET_KEY = 'django-insecure-dkuo53)kuk-%79$3p01=v)m6^bwh!63&t#m*2if$93#k==i%z5'
+>>>>>>> 5919f17ca26ca5341be36f53b70d4c09c59953d8
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +35,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
+=======
+    #my apps
+    'meal_plans',
+    #default
+>>>>>>> 5919f17ca26ca5341be36f53b70d4c09c59953d8
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
