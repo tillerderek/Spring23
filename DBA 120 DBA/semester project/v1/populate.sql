@@ -5,10 +5,17 @@
 USE SFRC_derekatiller;
 
 -- create the tables for the database
-CREATE TABLE renters (
+CREATE TABLE client (
   client_id          INT            PRIMARY KEY   AUTO_INCREMENT,
-  first_name      VARCHAR(60)   NOT NULL      UNIQUE
-  l_name        VARCHAR(60)   NOT NULL      UNIQUE
+  first_name      VARCHAR(100)   NOT NULL,
+  last_name       VARCHAR(100)   NOT NULL,     
+  street_1        VARCHAR(100)   NOT NULL,     
+  city            VARCHAR(100)   NOT NULL,
+  state           CHAR(2)        NOT NULL,
+  zip             CHAR(5)        NOT NULL,
+  phone           CHAR(10)       NOT NULL,
+  email           VARCHAR(100)   NOT NULL
+
 );
 
 CREATE TABLE rate (
