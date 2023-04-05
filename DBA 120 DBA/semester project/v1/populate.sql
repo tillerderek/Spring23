@@ -122,3 +122,19 @@ INSERT INTO owner (first_name, last_name, street_1, city, state, zip, phone, ema
 ("Robert", "Smith", "5223 Mountain Lane", "Ft. Morgan", "WV", "34665", "5055551456", "bobbys@com.net"),
 ("Luke", "Taylors", "375 Windward Way", "Asheville", "NC", "28801", "8284459776", "luket@com.net")
 
+INSERT INTO condo (type, accepts_pets, wifi) VALUES
+-- maybe need not auto inc and use property code instead and add here
+("SandsOF3BR", "Yes", "Yes"),
+("SandsOV3BR", "Yes", "Yes"),
+("Tides3BR", "No", "No"),
+("Tides3BR", "No", "Yes"),
+("SandsOF2BR", "No", "Yes"),
+("Tides2BR", "No", "Yes"),
+("SandsOV2BR", "No", "No"),
+("SandsOF2BR", "Yes", "Yes"),
+("Tides2BR", "Yes", "No"),
+("Tides3BR", "Yes", "Yes"),
+("SandsOV2BR", "Yes", "No"),
+("SandsOF3BR", "No", "No"),
+("Tides3BR", "Yes", "Yes")
+
