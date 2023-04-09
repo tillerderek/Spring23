@@ -26,7 +26,7 @@ CREATE TABLE reservation (
   deposit            DECIMAL(9,2)  NOT NULL,
   arrival_date       DATE           NOT NULL,
   departure_date     DATE           NOT NULL,
-  pet_type       CHAR(3)   NOT NULL,
+  pet_type           CHAR(3)        NOT NULL,
   pet_deposit        DECIMAL(9,2)  NOT NULL,
   cleaning_fee       DECIMAL(9,2)  NOT NULL,
   rental_rate        DECIMAL(9,2)  NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE owner (
 );
 
 CREATE TABLE condo (
-  condo_id           INT            PRIMARY KEY   AUTO_INCREMENT,
+  condo_id           INT            PRIMARY KEY,
   owner_id           INT            NOT NULL,
   rate_id        INT            NOT NULL,
   type             VARCHAR(10)       NOT NULL,
@@ -123,7 +123,34 @@ INSERT INTO owner (first_name, last_name, street_1, city, state, zip, phone, ema
 ("Luke", "Taylors", "375 Windward Way", "Asheville", "NC", "28801", "8284459776", "luket@com.net")
 
 INSERT INTO condo (type, accepts_pets, wifi) VALUES
--- maybe need not auto inc and use property code instead and add here
+-- not sure but maybe need to use the property code from the word doc here instead of auto incremented value for condo_id
+("SandsOF3BR", "Yes", "Yes"),
+("SandsOV3BR", "Yes", "Yes"),
+("Tides3BR", "No", "No"),
+("Tides3BR", "No", "Yes"),
+("SandsOF2BR", "No", "Yes"),
+("Tides2BR", "No", "Yes"),
+("SandsOV2BR", "No", "No"),
+("SandsOF2BR", "Yes", "Yes"),
+("Tides2BR", "Yes", "No"),
+("Tides3BR", "Yes", "Yes"),
+("SandsOV2BR", "Yes", "No"),
+("SandsOF3BR", "No", "No"),
+("Tides3BR", "Yes", "Yes"),
+("SandsOF3BR", "Yes", "Yes"),
+("SandsOV3BR", "Yes", "Yes"),
+("Tides3BR", "No", "No"),
+("Tides3BR", "No", "Yes"),
+("SandsOF2BR", "No", "Yes"),
+("Tides2BR", "No", "Yes"),
+("SandsOV2BR", "No", "No"),
+("SandsOF2BR", "Yes", "Yes"),
+("Tides2BR", "Yes", "No"),
+("Tides3BR", "Yes", "Yes"),
+("SandsOV2BR", "Yes", "No"),
+("SandsOF3BR", "No", "No"),
+("Tides3BR", "Yes", "Yes"),
+("SandsOF3BR", "Yes", "Yes"),
 ("SandsOF3BR", "Yes", "Yes"),
 ("SandsOV3BR", "Yes", "Yes"),
 ("Tides3BR", "No", "No"),
@@ -146,38 +173,38 @@ INSERT INTO season (start_date, end_date) VALUES
 ('2020-11-01', '2020-12-31')
 
 INSERT INTO property_rate (rate) VALUES
-(400)
-(450)
-(375)
-(425)
-(350)
-(375)
-(475)
-(525)
-(425)
-(475)
-(375)
-(400)
-(600)
-(650)
-(575)
-(625)
-(550)
-(575)
-(625)
-(450)
-(500)
-(475)
-(525)
-(425)
-(475)
-(375)
-(400)
-(400)
-(450)
-(375)
-(425)
-(350)
+(400),
+(450),
+(375),
+(425),
+(350),
+(375),
+(475),
+(525),
+(425),
+(475),
+(375),
+(400),
+(600),
+(650),
+(575),
+(625),
+(550),
+(575),
+(625),
+(450),
+(500),
+(475),
+(525),
+(425),
+(475),
+(375),
+(400),
+(400),
+(450),
+(375),
+(425),
+(350),
 (375)
 
 INSERT INTO reservation (deposit, arrival_date, departure_date, pet_type, pet_deposit, cleaning_fee, rental_rate, payment_method) VALUES
