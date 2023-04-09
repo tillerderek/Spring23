@@ -122,3 +122,93 @@ INSERT INTO owner (first_name, last_name, street_1, city, state, zip, phone, ema
 ("Robert", "Smith", "5223 Mountain Lane", "Ft. Morgan", "WV", "34665", "5055551456", "bobbys@com.net"),
 ("Luke", "Taylors", "375 Windward Way", "Asheville", "NC", "28801", "8284459776", "luket@com.net")
 
+INSERT INTO condo (type, accepts_pets, wifi) VALUES
+-- maybe need not auto inc and use property code instead and add here
+("SandsOF3BR", "Yes", "Yes"),
+("SandsOV3BR", "Yes", "Yes"),
+("Tides3BR", "No", "No"),
+("Tides3BR", "No", "Yes"),
+("SandsOF2BR", "No", "Yes"),
+("Tides2BR", "No", "Yes"),
+("SandsOV2BR", "No", "No"),
+("SandsOF2BR", "Yes", "Yes"),
+("Tides2BR", "Yes", "No"),
+("Tides3BR", "Yes", "Yes"),
+("SandsOV2BR", "Yes", "No"),
+("SandsOF3BR", "No", "No"),
+("Tides3BR", "Yes", "Yes")
+
+INSERT INTO season (start_date, end_date) VALUES
+('2020-01-01', '2020-03-31'),
+('2020-04-01', '2020-05-31'),
+('2020-06-01', '2020-08-31'),
+('2020-09-01', '2020-10-31'),
+('2020-11-01', '2020-12-31')
+
+INSERT INTO property_rate (rate) VALUES
+(400)
+(450)
+(375)
+(425)
+(350)
+(375)
+(475)
+(525)
+(425)
+(475)
+(375)
+(400)
+(600)
+(650)
+(575)
+(625)
+(550)
+(575)
+(625)
+(450)
+(500)
+(475)
+(525)
+(425)
+(475)
+(375)
+(400)
+(400)
+(450)
+(375)
+(425)
+(350)
+(375)
+
+INSERT INTO reservation (deposit, arrival_date, departure_date, pet_type, pet_deposit, cleaning_fee, rental_rate, payment_method) VALUES
+-- need to adjust cleaning fees
+(100, 2019-01-06, 2019-01-13, NULL, NULL, 75, 375, "Cash"),
+(100, 2019-01-13, 2019-01-27, NULL, NULL, 75, 800, "AMEX"),
+(100, 2019-01-20, 2019-02-03, NULL, NULL, 75, 750, "Check"),
+(100, 2019-02-03, 2019-02-24, "cat", 150, 75, 1050, "Check"),
+(100, 2019-02-17, 2019-02-24, "dog", 150, 75, 375, "Visa"),
+(100, 2019-02-10, 2019-02-24, NULL, NULL, 75, 900, "AMEX"),
+(100, 2019-02-24, 2019-03-03, NULL, NULL, 75, 350, "PayPal"),
+(100, 2019-03-03, 2019-03-10, NULL, NULL, 75, 375, "Visa"),
+(100, 2019-03-17, 2019-03-24, NULL, NULL, 75, 450, "MasterCard"),
+(100, 2019-04-07, 2019-04-14, NULL, NULL, 75, 525, "MasterCard"),
+(100, 2019-04-07, 2019-04-17, "dog", 150, 75, 400, "Check"),
+(100, 2019-04-14, 2019-04-21, NULL, NULL, 75, 400, "MasterCard"),
+(100, 2019-05-05, 2019-05-19, "cat", 150, 75, 950, "AMEX")
+(100, 2019-05-05, 2019-05-12, NULL, NULL, 75, 400, "MasterCard"),
+(100, 2019-05-05, 2019-05-19, NULL, NULL, 75, 950, "PayPal"),
+(100, 2019-05-05, 2019-05-12, NULL, NULL, 75, 525, "Cash"),
+(100, 2019-05-12, 2019-05-19, NULL, NULL, 75, 400, "MasterCard"),
+(100, 2019-05-12, 2019-05-19, NULL, NULL, 75, 400, "Visa"),
+(100, 2019-05-19, 2019-05-26, "dog", 150, 75, 425, "Visa"),
+(100, 2019-06-02, 2019-06-16, NULL, NULL, 75, 1200, "PayPal"),
+(100, 2019-06-02, 2019-06-23, NULL, NULL, 75, 1950, "PayPal"),
+(100, 2019-06-09, 2019-06-23, "dog", 150, 75, 500, "Check"),
+(100, 2019-06-16, 2019-06-23, NULL, NULL, 75, 500, "MasterCard"),
+(100, 2020-01-05, 2020-01-12, NULL, NULL, 75, 375, "Check"),
+(100, 2020-01-19, 2020-02-02, NULL, NULL, 75, 900, "MasterCard"),
+(100, 2020-02-02, 2020-02-09, NULL, NULL, 75, 350, "PayPal"),
+(100, 2020-02-09, 2020-02-16, "dog", 150, 75, 375, "Check"),
+(100, 2020-03-02, 2020-03-23, "cat", 150, 75, 1200, "AMEX")
+
+
