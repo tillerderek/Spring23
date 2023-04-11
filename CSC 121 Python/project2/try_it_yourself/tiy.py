@@ -20,3 +20,9 @@
 #18-6
 #contained in pizzeria project folder index.html file
 
+#18-7
+#skimming the docs, I found the filters section to be interesting. I'm going to
+#deeper into the docs to see if I can find more info on available filters.
+
+#18-8
+#contained in pizzeria project folder. 
