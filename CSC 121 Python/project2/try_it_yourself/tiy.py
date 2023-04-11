@@ -16,3 +16,7 @@
 
 #18-5
 #contained in meal_planner folder
+
+#18-6
+#contained in pizzeria project folder index.html file
+
