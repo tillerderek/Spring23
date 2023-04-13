@@ -7,4 +7,6 @@ urlpatterns = [
     path('', views.index, name='index'),
         # Page that shows all pizzas.
     path('pizzas/', views.pizzas, name='pizzas'),
+    # Detail pizza toppings
+    path('pizzas/<int:pizza_id>/', views.pizza, name='pizza')
 ]
