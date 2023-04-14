@@ -35,4 +35,8 @@
 #contained in blog folder
 
 #19-3
-#
+#added check_topic_owner function to blog/views.py on new_entry function to 
+#prevent users from adding entries to topics that don't belong to them.
+
+#19-4
+#contained in blog folder
