@@ -5,9 +5,14 @@
       {% for blog in blogs %}
         <li><h2>{{ blog.title }}</h2></li>
         <p>{{ blog.text }}</p>
+        <p>
+          <a href="{% url 'blogs:edit_post' blog.id %}">Edit blog</a>
+        </p>
       {% empty %}
         <li>No blogs are available.</li>
       {% endfor %}
     </ul>
+
+    <a href="{% url 'blogs:new_post' %}">Add a new post</a>
 
 {% endblock content %}
