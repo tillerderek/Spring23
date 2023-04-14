@@ -1,18 +1,22 @@
 {% extends "blogs/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Track your learning.</h1>
+    <p class="lead">Make your own Learning Log, and keep a list of the topics 
+      you're learning about. Whenever you learn something new about a topic,
+       make an entry summarizing what you've learned.</p>
+    
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}" 
+    role="button">Register &raquo;</a>
+  </div>
+  {% endblock page_header %}
+
+  {% extends "blogs/base.html" %}
 {% block content %}
     <h1>What a kewl blog to see. Right?</h1>
-    <ul>
-      {% for blog in blogs %}
-        <li><h2>{{ blog.title }}</h2></li>
-        <p>{{ blog.text }}</p>
-        <p>
-          <a href="{% url 'blogs:edit_post' blog.id %}">Edit blog</a>
-        </p>
-      {% empty %}
-        <li>No blogs are available.</li>
-      {% endfor %}
-    </ul>
 
     <a href="{% url 'blogs:new_post' %}">Add a new post</a>
+    <a href="{% url 'users:register' %}">Register a new account</a>
 
 {% endblock content %}

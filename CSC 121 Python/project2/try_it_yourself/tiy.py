@@ -40,3 +40,10 @@
 
 #19-4
 #contained in blog folder
+
+#20-1
+#contained in learning_log folder. all pages fully styled to match
+#the overall theme. 
+
+#20-2
+#contained in blog folder. 

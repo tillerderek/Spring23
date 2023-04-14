@@ -13,12 +13,16 @@ def check_blog_owner(request, blog):
     if blog.owner != request.user:
         raise Http404
     
-@login_required
 def index(request):
     """The home page for blogs"""
+    return render(request, 'blogs/index.html')
+
+@login_required
+def homepage(request):
+    """The home page for users blog"""
     blogs = BlogPost.objects.filter(owner=request.user).order_by('date_added')
     context = {'blogs': blogs}
-    return render(request, 'blogs/index.html', context)
+    return render(request, 'blogs/homepage.html', context)
 
 @login_required
 def new_post(request):
@@ -33,7 +37,7 @@ def new_post(request):
             new_post = form.save(commit=False)
             new_post.owner = request.user
             new_post.save()
-            return redirect('blogs:index')
+            return redirect('blogs:homepage')
     context = {'form': form}
     return render(request, 'blogs/new_post.html', context)
 
@@ -50,6 +54,6 @@ def edit_post(request, blog_id):
         form = BlogPostForm(instance=blog, data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect('blogs:index')
+            return redirect('blogs:homepage')
     context = {'blog': blog, 'form': form}
     return render(request, 'blogs/edit_post.html', context)
