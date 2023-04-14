@@ -7,17 +7,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0",
       shrink-to-fit="no">
-    <title>Learning Log</title>
+    <title>Cool Blog</title>
 
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
   </head>
-  <body>
+  <body class="bg-dark text-white">
 
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
 
       <a class="navbar-brand" href="{% url 'blogs:index' %}">
-        Learning Log</a>
+        Cool Blog</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" 
         data-target="#navbarNav" aria-controls="navbarNav" 
@@ -27,13 +27,13 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blogs:index' %}">
-              Cool Blog Home</a></li>
+              Home</a></li>
         </ul>
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
             <li class="nav-item">
               <span class="navbar-text">Hello, {{ user.username }}!</span>
-              <a href="{% url 'blogs:homepage' %}">My Blog</a>
+              <a href="{% url 'blogs:homepage' %}">{{ user.username}}'s Blog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:logout' %}">

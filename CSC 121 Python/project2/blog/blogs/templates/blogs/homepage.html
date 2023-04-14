@@ -1,13 +1,18 @@
 {% extends "blogs/base.html" %}
-{% block content %}
+
+{% block page_header %}
     <h1>What a kewl blog to see. Right?</h1>
-    <ul>
+{% endblock page_header %}
+
+{% block content %}
+    <ul class="bg-danger">
       {% for blog in blogs %}
         <li><h2>{{ blog.title }}</h2></li>
         <p>{{ blog.text }}</p>
         <p>
           <a href="{% url 'blogs:edit_post' blog.id %}">Edit blog</a>
         </p>
+        <hr class="w-75 bg-dark hr-thick">
       {% empty %}
         <li>No blogs are available.</li>
       {% endfor %}
