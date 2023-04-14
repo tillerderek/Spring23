@@ -47,3 +47,11 @@
 
 #20-2
 #contained in blog folder. 
+
+#20-3
+#blog is live
+
+#20-4
+#contained in blog folder 404 errors working
+
+#20-5

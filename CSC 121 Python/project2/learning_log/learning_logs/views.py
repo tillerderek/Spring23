@@ -17,14 +17,18 @@ def check_topic_owner(request, topic):
 @login_required
 def topics(request):
     """Show all topics."""
-    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    if request.user.is_authenticated:
+      topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    else:
+      topics = Topic.objects.filter(public=True).order_by('date_added')
+
     context = {'topics': topics}
     return render(request, 'learning_logs/topics.html', context)
 
 @login_required
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
-    topic = Topic.object_or_404(id=topic_id)
+    topic = Topic.get_object_or_404(id=topic_id)
     # Make sure the topic belongs to the current user.
     check_topic_owner(request, topic)
     entries = topic.entry_set.order_by('-date_added')
@@ -43,6 +47,7 @@ def new_topic(request):
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
+            topic.public = form.cleaned_data['public']
             new_topic.save()
             return redirect('learning_logs:topics')
 
@@ -53,7 +58,7 @@ def new_topic(request):
 @login_required
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
-    topic = Topic.objects.get(id=topic_id)
+    topic = Topic.get_object_or_404(id=topic_id)
 
     check_topic_owner(request, topic)
     
@@ -76,7 +81,7 @@ def new_entry(request, topic_id):
 @login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry."""
-    entry = Entry.objects.get(id=entry_id)
+    entry = Entry.get_object_or_404(id=entry_id)
     topic = entry.topic
     check_topic_owner(request, topic)
 
