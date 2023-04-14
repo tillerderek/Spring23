@@ -26,3 +26,13 @@
 
 #18-8
 #contained in pizzeria project folder. 
+
+
+#19-1 
+#contained in blog folder
+
+#19-2
+#contained in blog folder
+
+#19-3
+#
