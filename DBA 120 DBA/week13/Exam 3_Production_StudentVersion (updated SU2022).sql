@@ -17,6 +17,15 @@ WHERE c.category_id IN (SELECT p.category_id
                         FROM products p)
 ORDER BY category_name;
 
+-- +---------------+
+-- | category_name |
+-- +---------------+
+-- | Basses        |
+-- | Drums         |
+-- | Guitars       |
+-- +---------------+
+-- 3 rows in set (0.001 sec)
+
 
 
 -- 2.	(MGS database – 10 points)  
@@ -25,6 +34,12 @@ ORDER BY category_name;
 --			Return the product_name and list_price columns for each product.
 --			Sort the results by the list_price column in descending sequence.  
 
+SELECT product_name, list_price
+FROM products
+WHERE list_price > (SELECT AVG(list_price)
+                    FROM products)
+ORDER BY list_price DESC;
+
 
 
 --3.	(MGS database – 10 points)  
@@ -32,6 +47,12 @@ ORDER BY category_name;
 --		Return one row for each category that has never been assigned to any product in the Products table.  
 --		Use a subquery introduced with the NOT EXISTS operator, not an outer join. 
 
+SELECT category_name
+FROM categories c
+WHERE NOT EXISTS (SELECT *
+                  FROM products p
+                  WHERE c.category_id = p.category_id);
+              
 	
 
 -- 4.	(MGS database – 10 points)  
@@ -41,6 +62,17 @@ ORDER BY category_name;
 --		columns in the Order_Items table.
 --		Write a second SELECT statement that uses the first SELECT statement in its FROM clause. 
 --		The main query should return two columns: the customer’s email address and the largest order for that customer.  
+????NOT WORKING REDO 
+SELECT email_address, MAX(order_total) AS largest_order
+FROM (SELECT email_address, order_id, SUM(quantity * item_price) AS order_total
+      FROM customers c JOIN orders o
+        ON c.customer_id = o.customer_id
+        JOIN order_items oi
+        ON o.order_id = oi.order_id
+      GROUP BY email_address, order_id
+      ORDER BY email_address, order_total DESC) AS subquery
+GROUP BY email_address;
+
 
 
 
