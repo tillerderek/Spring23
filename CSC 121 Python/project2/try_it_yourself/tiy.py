@@ -26,3 +26,32 @@
 
 #18-8
 #contained in pizzeria project folder. 
+
+
+#19-1 
+#contained in blog folder
+
+#19-2
+#contained in blog folder
+
+#19-3
+#added check_topic_owner function to blog/views.py on new_entry function to 
+#prevent users from adding entries to topics that don't belong to them.
+
+#19-4
+#contained in blog folder
+
+#20-1
+#contained in learning_log folder. all pages fully styled to match
+#the overall theme. 
+
+#20-2
+#contained in blog folder. 
+
+#20-3
+#blog is live
+
+#20-4
+#contained in blog folder 404 errors working
+
+#20-5
