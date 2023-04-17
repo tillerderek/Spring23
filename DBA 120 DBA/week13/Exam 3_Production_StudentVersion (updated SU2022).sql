@@ -11,6 +11,12 @@ FROM categories c JOIN products p
   ON c.category_id = p.category_id
 ORDER BY category_name;
 
+SELECT DISTINCT category_name
+FROM categories c
+WHERE c.category_id IN (SELECT p.category_id
+                        FROM products p)
+ORDER BY category_name;
+
 
 
 -- 2.	(MGS database – 10 points)  
